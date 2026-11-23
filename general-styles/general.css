@@ -1,0 +1,139 @@
+/* general-styles/general.css
+   Quy tắc chữ toàn web:
+   - Nội dung: luôn dùng Inter (--font-body)
+   - Tiêu đề lớn (tên trang / tên người): Playfair Display (--font-heading)
+   - Chỉ dùng 3 cỡ chữ: --fs-body (16px), --fs-small (14px), --fs-label (13px, chữ nhãn in hoa) */
+@import url("/general-styles/header.css");
+@import url("/general-styles/ran-pic.css");
+@import url("/general-styles/music.css");
+
+:root {
+  --font-body: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
+
+  --fs-body: 1rem;        /* 16px - đoạn văn, nội dung chính */
+  --fs-small: 0.875rem;   /* 14px - chú thích, ngày tháng, tooltip */
+  --fs-label: 0.8125rem;  /* 13px - nhãn nhỏ in hoa */
+  --fs-title: clamp(1.75rem, 4.5vw, 2.5rem); /* tiêu đề lớn */
+
+  --lh-body: 1.75;
+}
+
+/* ================= THANH CUỘN =================
+   Track đen, con trượt trắng bo tròn (giống ảnh mẫu) */
+html {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff #000000;
+}
+
+/* Chrome / Edge / Safari: dùng ::-webkit-scrollbar (cần trả scrollbar-* về auto
+   để trình duyệt mới không bỏ qua kiểu bên dưới) */
+@supports selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-width: auto;
+    scrollbar-color: auto;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #000000;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 999px;
+    min-height: 48px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #e4e4e4;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: #000000;
+  }
+}
+
+@keyframes slideUpBlur {
+  from {
+    opacity: 0;
+    filter: blur(1.5px);
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Nút bấm, ô nhập không tự thừa hưởng phông => ép dùng Inter */
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+p {
+  margin-top: 0;
+  color: white;
+  margin-bottom: 20px;
+}
+
+/* Header, hình nền, nút nhạc, script/link/audio: KHÔNG bị hiệu ứng trượt này */
+body > *:not(.pic):not(.header):not(.music-btn):not(script):not(link):not(audio) {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(1rem);
+  animation: slideUpBlur 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  background-color: #181514;
+  margin: 0;
+  padding-top: 70px;
+  padding-bottom: 250px;
+  overflow-x: hidden;
+  position: relative;
+}
+
+html,
+body {
+  width: 100%;
+}
+
+.poem {
+  color: aliceblue;
+  display: grid;
+  align-items: end;
+  justify-self: center;
+  margin-top: 200px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  body > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

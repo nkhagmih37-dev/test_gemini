@@ -1,0 +1,163 @@
+/* general-styles/music.css
+   Nút nhạc nền ở góc dưới bên phải. JS (js/music.js) tự tạo nút có class .music-btn
+   và thêm/bớt class .is-playing:
+     - không có .is-playing  => đang TẮT: hiện dấu gạch chéo
+     - có .is-playing        => đang BẬT: icon xoay + vòng sóng lan ra
+   Tooltip của nút dùng CHUNG kiểu với tooltip ở header (xem header.css, mục 4);
+   ở đây chỉ đổi vị trí: hiện phía TRÊN nút vì nút nằm sát đáy màn hình. */
+
+.music-btn {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 1100;
+
+  width: 54px;
+  height: 54px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(249, 252, 216, 0.22);
+  background-color: rgba(31, 29, 29, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
+
+  /* Hiện ngay (không còn trễ 1s), chạy nhanh 0.3s.
+     "backwards" (không phải "both") để sau khi chạy xong, hiệu ứng hover vẫn hoạt động */
+  animation: musicIn 0.3s ease-out backwards;
+}
+
+.music-btn:hover,
+.music-btn:focus-visible {
+  transform: scale(1.1);
+  border-color: rgba(249, 252, 216, 0.5);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55),
+              0 0 14px rgba(253, 255, 231, 0.18);
+  outline: none;
+}
+
+.music-btn:active {
+  transform: scale(0.92);
+}
+
+/* --- Biểu tượng --- */
+.music-icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  opacity: 0.6;
+  pointer-events: none;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+/* --- Vòng sóng (chỉ chạy khi đang bật) --- */
+.music-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(253, 255, 231, 0.55);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* --- Dấu gạch chéo (chỉ hiện khi đang tắt) --- */
+.music-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 2.5px;
+  border-radius: 2px;
+  background-color: rgb(253, 255, 231);
+  /* viền tối quanh vạch để nó tách khỏi icon */
+  box-shadow: 0 0 0 1.5px rgb(31, 29, 29);
+  pointer-events: none;
+
+  transform: translate(-50%, -50%) rotate(-45deg) scaleX(1);
+  transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* ================= TOOLTIP (dùng chung kiểu với header) ================= */
+.music-btn .tooltip {
+  top: auto;
+  left: auto;
+  bottom: calc(100% + 10px);
+  right: 0;
+  transform: translateY(6px) scale(0.92);
+}
+
+/* mũi tên chỉ xuống nút */
+.music-btn .tooltip::before {
+  bottom: auto;
+  top: 100%;
+  left: auto;
+  right: 22px;
+  transform: none;
+  border-color: rgb(22, 25, 29) transparent transparent transparent;
+}
+
+.music-btn:hover .tooltip,
+.music-btn:focus-visible .tooltip {
+  transform: translateY(0) scale(1);
+}
+
+/* ================= TRẠNG THÁI ĐANG BẬT ================= */
+.music-btn.is-playing {
+  border-color: rgba(253, 255, 231, 0.45);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5),
+              0 0 16px rgba(253, 255, 231, 0.22);
+}
+
+.music-btn.is-playing .music-icon {
+  opacity: 1;
+  filter: drop-shadow(0 0 5px rgba(253, 255, 231, 0.8));
+  animation: musicSpin 6s linear infinite;
+  /* Muốn icon đập nhẹ thay vì xoay, đổi dòng trên thành:
+     animation: musicBeat 0.7s ease-in-out infinite alternate; */
+}
+
+.music-btn.is-playing::before {
+  animation: musicRing 2s ease-out infinite;
+}
+
+/* gạch chéo "co lại" về 0 khi bật nhạc */
+.music-btn.is-playing::after {
+  transform: translate(-50%, -50%) rotate(-45deg) scaleX(0);
+}
+
+/* ================= KEYFRAMES ================= */
+@keyframes musicIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.9); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes musicBeat {
+  from { transform: scale(1); }
+  to   { transform: scale(1.14); }
+}
+
+@keyframes musicSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes musicRing {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+
+@media (max-width: 600px) {
+  .music-btn { right: 14px; bottom: 14px; width: 48px; height: 48px; }
+  .music-icon { width: 23px; height: 23px; }
+  .music-btn::after { width: 32px; }
+  .music-btn .tooltip::before { right: 19px; }
+}

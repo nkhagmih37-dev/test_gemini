@@ -1,0 +1,286 @@
+/* general-styles/header.css
+   Mục 4 (TOOLTIP) là kiểu tooltip DÙNG CHUNG cho header và nút nhạc (.music-btn). */
+
+@keyframes headerFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* =========================================================
+   1. KHUNG HEADER CHUNG
+   ========================================================= */
+.header {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(56, 56, 56);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  background-color: rgba(24, 21, 20, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  z-index: 1000;
+  animation: headerFade 1s ease both;
+}
+
+.left-section {
+  margin-left: 19px;
+  flex: 1;
+  max-width: 300px;
+  display: flex;
+  align-items: center;
+}
+
+.middle-section {
+  flex: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-section {
+  margin-right: 19px;
+  flex: 1;
+  max-width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* =========================================================
+   2. KHUNG BAO ICON (.img-container) - HIỆN KHUNG KHI HOVER / FOCUS
+   ========================================================= */
+.img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+
+  transition: background-color 0.25s ease,
+              border-color 0.25s ease,
+              box-shadow 0.25s ease,
+              transform 0.2s ease;
+}
+
+.img-container:hover,
+.img-container:focus-visible {
+  background-color: rgba(245, 241, 241, 0.06);
+  border-color: rgba(249, 252, 216, 0.22);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+  outline: none;
+}
+
+.img-container:active {
+  transform: scale(0.92);
+}
+
+.knot-container {
+  width: 64px;
+  height: 64px;
+  border-radius: 30%;
+}
+.knot-container:hover,
+.knot-container:focus-visible {
+  background-color: rgba(137, 138, 95, 0.05);
+  border-color: rgba(187, 188, 131, 0.25);
+}
+
+/* =========================================================
+   3. HIỆU ỨNG XOAY & PHÁT SÁNG TỪNG ICON
+   ========================================================= */
+
+/* --- 3.1. Nút Search góc trái --- */
+.search-button {
+  height: 52px;
+  width: 52px;
+  border: 1px solid transparent;
+  background-color: rgb(31, 29, 29);
+  border-radius: 16px;
+}
+
+.search-icon {
+  height: 28px;
+  width: 28px;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.3s ease;
+}
+
+.search-button:hover .search-icon,
+.search-button:focus-visible .search-icon {
+  transform: scale(1.14) rotate(-15deg);
+  filter: drop-shadow(0 0 6px rgba(253, 255, 231, 0.7));
+}
+
+/* --- 3.2. Logo Trái tim bện (.knot) ở giữa --- */
+.knot {
+  height: 53px;
+  width: 53px;
+  filter: drop-shadow(0 0 5.6px rgba(253, 255, 231, 0.37));
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.3s ease;
+}
+
+.img-container:hover .knot,
+.img-container:focus-visible .knot {
+  filter: drop-shadow(0 0 10px rgba(250, 252, 152, 0.45))
+          drop-shadow(0 0 6px rgba(140, 233, 154, 0.6));
+  transform: scale(1.08) rotate(5deg);
+}
+
+/* --- 3.3. Icon Sổ tay con mắt (.atlas) --- */
+.atlas {
+  height: 25px;
+  width: 25px;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.3s ease;
+}
+
+.img-container:hover .atlas,
+.img-container:focus-visible .atlas {
+  filter: drop-shadow(0 0 6px rgba(253, 255, 231, 0.85))
+          drop-shadow(0 0 3px rgba(248, 249, 237, 0.4));
+  transform: translateY(-2px) scale(1.12) rotate(-8deg);
+}
+
+/* --- 3.4. Icon Kết nối (.link) --- */
+.link {
+  height: 25px;
+  width: 25px;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.3s ease;
+}
+
+.img-container:hover .link,
+.img-container:focus-visible .link {
+  filter: drop-shadow(0 0 6px rgba(253, 255, 231, 0.85))
+          drop-shadow(0 0 3px rgba(248, 249, 237, 0.4));
+  transform: translateY(-2px) scale(1.12) rotate(8deg);
+}
+
+/* --- 3.5. Ảnh đại diện (.user-picture) + Vòng nét đứt xoay --- */
+.user-picture {
+  height: 35px;
+  width: 35px;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.3s ease;
+}
+
+.user-container {
+  border-radius: 50%;
+}
+
+.user-container::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(253, 255, 231, 0);
+  pointer-events: none;
+  transition: transform 0.65s ease, border-color 0.3s ease, inset 0.3s ease;
+}
+
+.user-container:hover .user-picture,
+.user-container:focus-visible .user-picture {
+  transform: scale(1.08) rotate(10deg);
+  filter: drop-shadow(0 0 6px rgba(253, 255, 231, 0.5));
+}
+
+.user-container:hover::after,
+.user-container:focus-visible::after {
+  inset: -2px;
+  border-color: rgba(253, 255, 231, 0.65);
+  transform: rotate(120deg);
+}
+
+/* =========================================================
+   4. TOOLTIP - DÙNG CHUNG cho header (.img-container) và nút nhạc (.music-btn)
+   Mặc định tooltip hiện phía DƯỚI phần tử. Nút nhạc ghi đè vị trí trong music.css.
+   ========================================================= */
+:is(.img-container, .music-btn) .tooltip {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px) scale(0.92);
+
+  background-color: rgb(22, 25, 29);
+  color: rgb(243, 237, 237);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 5px 11px;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.55);
+
+  /* Chữ tooltip cố định, không phụ thuộc phần tử cha */
+  font-family: var(--font-body, Inter, system-ui, sans-serif);
+  font-size: var(--fs-small, 0.875rem);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-transform: none;
+  text-align: left;
+  white-space: nowrap;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 1001;
+
+  transition: opacity 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+              visibility 0.25s;
+}
+
+:is(.img-container, .music-btn) .tooltip::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent rgb(22, 25, 29) transparent;
+}
+
+:is(.img-container, .music-btn):hover .tooltip,
+:is(.img-container, .music-btn):focus-visible .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+/* Chống tràn lề phải cho tooltip cuối cùng ("about me") */
+.user-container .tooltip {
+  left: auto;
+  right: 0;
+  transform: translateY(-6px) scale(0.92);
+}
+.user-container .tooltip::before {
+  left: auto;
+  right: 16px;
+}
+.user-container:hover .tooltip,
+.user-container:focus-visible .tooltip {
+  transform: translateY(0) scale(1);
+}
+
+/* Màn hình nhỏ: thu nhỏ lề header */
+@media (max-width: 600px) {
+  .left-section  { margin-left: 10px; }
+  .right-section { margin-right: 10px; }
+  .knot-container { width: 52px; height: 52px; }
+  .knot { height: 42px; width: 42px; }
+}
