@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>about me</title>
+
+  <!-- Preload icon nút nhạc để nút hiện ngay khi tải trang -->
+  <link rel="preload" as="image" href="/img/music.png">
+  <script src="/js/music.js" defer></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Inter: toàn bộ nội dung. Playfair Display: font tiêu đề -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&family=Playfair+Display:wght@600..800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/general-styles/general.css">
+  <link rel="stylesheet" href="/aboutme-styles/about.css">
+  <link rel="icon" href="/img/knot.png">
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="left-section">
+      <button class="search-button img-container" aria-label="search">
+        <img class="search-icon" src="/img/search-icon.png" alt="">
+        <div class="tooltip">search</div>
+      </button>
+    </div>
+
+    <div class="middle-section">
+      <!-- Bấm vào symbol => về trang blog -->
+      <a href="/my-blog.html" class="img-container knot-container" aria-label="my blog">
+        <img class="knot" src="/img/knot.png" alt="">
+        <div class="tooltip">my blog</div>
+      </a>
+    </div>
+
+    <div class="right-section">
+      <div class="img-container" tabindex="0" role="button" aria-label="my math work">
+        <img class="atlas" src="/img/atlas.png" alt="">
+        <div class="tooltip">my math work</div>
+      </div>
+
+      <div class="img-container" tabindex="0" role="button" aria-label="my info">
+        <img class="link" src="/img/link.png" alt="">
+        <div class="tooltip">my info</div>
+      </div>
+
+      <a href="/ab_me.html" class="img-container user-container" aria-label="about me">
+        <img class="user-picture" src="/img/user.jpg" alt="">
+        <div class="tooltip">about me</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="pic" aria-hidden="true">
+    <img class="pic-1" src="/img/x7+7y.png" alt="">
+    <img class="pic-2" src="/img/snail.png" alt="">
+    <img class="pic-3" src="/img/triangle.png" alt="">
+    <img class="pic-4" src="/img/parapol.png" alt="">
+    <img class="pic-5" src="/img/f-2.png" alt="">
+    <img class="pic-6" src="/img/claude.png" alt="">
+  </div>
+
+  <main class="about">
+
+    <!-- ===== Phần đầu ===== -->
+    <section class="about-hero">
+      <img class="avatar" src="/img/user.jpg" alt="Ảnh đại diện">
+      <div>
+        <h1 class="hero-name">Dang Chi Khang</h1>
+        <p class="hero-sub">aka Apeiros Aristokles &middot; Undergraduate, HCMUS</p>
+      </div>
+    </section>
+
+    <!-- Chữ vàng gạch chân đứt = chỗ bạn cần tự sửa. Điền xong thì xóa <span class="todo"> -->
+
+    <!-- ===== Thông tin chung ===== -->
+    <section class="cv-section" style="--i:0">
+      <h2 class="cv-title">Thông tin chung</h2>
+      <dl class="facts">
+        <dt>Họ tên</dt>
+        <dd>Dang Chi Khang</dd>
+
+        <dt>Bút danh</dt>
+        <dd>Apeiros Aristokles</dd>
+
+        <dt>Ngày sinh</dt>
+        <dd><span class="todo">[dd/mm/yyyy]</span></dd>
+
+        <dt>Quê quán</dt>
+        <dd><span class="todo">[Tỉnh / thành phố]</span></dd>
+
+        <dt>Ngôn ngữ</dt>
+        <dd>Tiếng Việt, <span class="todo">[English - trình độ]</span></dd>
+
+        <dt>Liên hệ</dt>
+        <dd><span class="todo">[email của bạn]</span></dd>
+      </dl>
+    </section>
+
+    <!-- ===== Học vấn ===== -->
+    <section class="cv-section" style="--i:1">
+      <h2 class="cv-title">Học vấn</h2>
+      <div>
+        <div class="entry">
+          <div class="entry-when"><span class="todo">[năm]</span> &ndash; nay</div>
+          <div>
+            <div class="entry-title">University of Science, VNU-HCM (HCMUS)</div>
+            <div class="entry-note">Sinh viên đại học, ngành <span class="todo">[Toán học / ngành của bạn]</span></div>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-when"><span class="todo">[năm]</span> &ndash; <span class="todo">[năm]</span></div>
+          <div>
+            <div class="entry-title"><span class="todo">[Tên trường THPT]</span></div>
+            <div class="entry-note"><span class="todo">[Lớp chuyên / giải thưởng / thành tích nếu có]</span></div>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-when"><span class="todo">[năm]</span></div>
+          <div>
+            <div class="entry-title"><span class="todo">[Khóa học / chứng chỉ khác]</span></div>
+            <div class="entry-note"><span class="todo">[Mô tả ngắn]</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Sở thích ===== -->
+    <section class="cv-section" style="--i:2">
+      <h2 class="cv-title">Sở thích</h2>
+      <ul class="hobby-list">
+        <li><strong>Toán học.</strong> Thích sự thanh lịch của các cấu trúc toán học, từ bài toán thực tế đến lý thuyết trừu tượng.</li>
+        <li><strong>Nút thắt và biểu tượng.</strong> Mê những thứ nhỏ bé mà chứa nhiều ý nghĩa, như Quipu của người Inca.</li>
+        <li><strong>Âm nhạc.</strong> <span class="todo">[Thể loại / nghệ sĩ bạn thích]</span></li>
+        <li><strong><span class="todo">[Sở thích khác]</span>.</strong> <span class="todo">[Mô tả một câu]</span></li>
+      </ul>
+    </section>
+
+  </main>
+
+</body>
+
+</html>
